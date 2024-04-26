@@ -1,0 +1,314 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+
+/* Typography */
+.header-font {
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 6rem;
+  line-height: 1;
+  margin-bottom: 2rem;
+}
+
+.text-font {
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+  font-size: 1.2rem;
+  font-weight: 200;
+  line-height: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.bold {
+  font-weight: bolder;
+}
+
+.home-background {
+  background-image: url(../../assets/images/image.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+}
+
+
+
+
+
+.container {
+    /* border: solid 2px red; */
+    max-width: 80%;
+    padding-top: 3rem;
+    margin: 0rem auto;
+    text-align: center;
+}
+
+.button {
+  font-family: "Nunito Sans", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 1rem;
+  background-color: #51D877;
+  opacity: 80%;
+  padding: 1rem 5rem;
+  /* border-radius: 1rem; */
+  /* border: none; */
+  color: rgba(0, 0, 0, 0.563);
+  /* background: rgba(247, 247, 247, 0.935); */
+  box-shadow: 0 8px 32px 0 rgba(73, 153, 71, 0.37);
+  backdrop-filter: blur( 1px );
+  -webkit-backdrop-filter: blur( 1px );
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.192); 
+}
+  
+button:hover {
+  opacity: 100%
+}
+
+input {
+  border: none;
+  border-radius: 5px 5px 5px 5px ;
+  padding: 1rem 0 1rem 0;
+  width: 80%;
+  padding-left: 1rem;
+  padding-right: 3rem;
+  text-align: left;
+}
+
+
+
+.input-container {
+  margin-top: 1rem;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 320px;
+}
+
+input, .suggestion-list {
+  width: 100%;
+}
+
+.input-container input {
+  padding-right: 11rem;
+}
+
+input:focus {
+  outline-color: #1c451d2c;
+  border-radius: none;
+
+}
+
+.search-icon {
+  position: absolute;
+  top: 58%;
+  left: 280px; 
+  transform: translateY(-50%);
+  width: 1.5rem; 
+  height: auto;
+  fill: #1C2E45; 
+}
+
+.suggestion-list {
+  list-style-type: none;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  color: black;
+  gap: .5rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem;
+  border-radius: 0rem 0rem .5rem .5rem;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+  list-style-type: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: right;
+  overflow: hidden;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
+.suggestion-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; 
+  margin-left: 10px; 
+  overflow: hidden; 
+}
+
+.suggestion-details-name  {
+  font-size: 16px;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.suggestion-details-artist  {
+  font-size: 12px;
+  font-size: 12px;
+  color: #666; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+.suggestion-album {
+  width: 35px;
+  height: 35px;
+}
+  
+  
+  
+  @media only screen and (min-width: 769px) {
+
+    .home-background {
+      background-image: url(../../assets//images/hero4downsized.png);
+    }
+
+
+
+  
+    .home-text {
+      max-width: 70%;
+      margin-top: 4rem;
+      text-align: left;
+    }
+
+    .text-font {
+      font-size: 1rem;
+      max-width: 65%;
+
+    }
+
+    .header-font {
+      font-size: 5rem;
+    }
+
+    /* INPUT */
+    input {
+      border: none;
+      border-radius: 5px 5px 5px 5px ;
+      padding: 1rem 0rem 1rem 0;
+      width: 70%;
+      padding-left: 1rem;
+      padding-right: 3rem;
+      text-align: left;
+    }
+
+    input:focus {
+      border: none;
+      border-radius: 5px 5px 0px 0px ;
+    }
+    
+    .input-container {
+      margin-top: 1rem;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      max-width: 320px;
+    }
+    
+    input, .suggestion-list {
+      width: 100%;
+    }
+    
+    .input-container input {
+      padding-right: 11rem;
+    }
+    
+    input:focus {
+      outline-color: #1c451d2c;
+      border-radius: none;
+    
+    }
+    
+    .search-icon {
+      position: absolute;
+      top: 58%;
+      left: 280px; 
+      transform: translateY(-50%);
+      width: 1.5rem; 
+      height: auto;
+      fill: #1C2E45; 
+    }
+    
+    .suggestion-list {
+      list-style-type: none;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      color: black;
+      gap: .5rem;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0.5rem;
+      border-radius: 0rem 0rem .5rem .5rem;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .suggestion-item {
+      list-style-type: none;
+      text-decoration: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: right;
+      overflow: hidden;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+      transition: background-color 0.3s;
+    }
+    
+    .suggestion-item:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .suggestion-details {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1; 
+      margin-left: 10px; 
+      overflow: hidden; 
+    }
+    
+    .suggestion-details-name  {
+      font-size: 14px;
+      white-space: nowrap; 
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .suggestion-details-artist  {
+      font-size: 12px;
+      color: #666; 
+      white-space: nowrap; 
+      overflow: hidden; 
+      text-overflow: ellipsis; 
+    }
+    
+    .suggestion-album {
+      width: 30px;
+      height: 30px;
+    }
+      
+}

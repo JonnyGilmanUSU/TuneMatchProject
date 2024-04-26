@@ -1,0 +1,31 @@
+.loading-background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #2A4435;
+    /* background-image: url(../../assets/images/image.png); */
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.579) 0%, rgba(0, 0, 0, 0.256) 33%, rgba(0, 0, 0, 0.951) 66%); 
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 769px) {
+    .loading-background {
+      /* background-image: url(../../assets/images/herov4.png); */
+      background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.579) 0%, rgba(0, 0, 0, 0.256) 33%, rgba(0, 0, 0, 0.951) 66%); 
+      background-size: cover;
+      background-attachment: fixed;
+      /* background-color: #416E4D; */
+    }
+}

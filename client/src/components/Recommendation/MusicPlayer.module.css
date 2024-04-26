@@ -1,0 +1,301 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+
+/* Typography */
+h2 {
+  font-family: "Bai Jamjuree", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 1;
+}
+
+p {
+  font-family: "Nunito Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100,
+    "YTLC" 500;
+  font-size: 1.2rem;
+  font-weight: 200;
+  line-height: 1.6rem;
+}
+
+.musicPlayerContainer {
+    position: relative;
+    width: 100%; /* Adjust based on your needs */
+    height: 100%; /* Adjust based on your needs */
+    overflow: hidden; /* To handle any overflow from the scale transform */
+}
+
+/* Background */
+.recommendation-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* background: rgb(0,0,0); */
+    /* background: linear-gradient(180deg, rgb(32, 32, 32) 100%, rgba(0, 0, 0, 0.367) 100%); */
+  
+}
+
+.recommendation-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    transform: scale(3);
+}
+
+.red-gradient {
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.579) 0%, rgba(0, 0, 0, 0.256) 33%, rgba(0, 0, 0, 0.951) 66%); 
+}
+
+.light-gradient {
+    /* background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.231) 0%, rgba(255, 255, 255, 0.053) 33%, rgba(0, 0, 0, 0) 66%);     */
+    height: 100%;
+
+}
+
+.front-layer {
+    height: 100%;
+    position: relative;
+}
+
+/* Album Cover */
+.album-cover {
+    /* border: solid black; */
+    position: absolute;
+
+    /* Size */
+    width: 300px;
+    height: 300px;
+
+    /* Down the page */
+    top: 20%;
+ 
+
+    /* Center it */
+    margin: auto;
+    left: 0;
+    right: 0;
+ 
+}
+
+/* Album Cover Overlay */
+.white-album-cover {
+    border: solid black 1px .7;
+    position: absolute;
+
+    /* Background */
+    background: rgba(255, 255, 255, 0.5); /* Black see-through */
+    opacity: .7;
+
+    /* Match size with album cover */
+    width: 300px;
+    height: 300px;
+    top: 20%;
+
+    /* Centered */
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+
+    /* Box Shadow */
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.8); /* Adjust shadow values as needed */
+}
+
+/* SVG Placements */
+.time-bar {
+    position: absolute;
+
+    top: 80%;
+    width: 360px;
+
+    /* Centered */
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.like-song {
+    position: absolute;
+    cursor: pointer;
+    top: 75%;
+    z-index: 11;
+
+    /* Centered */
+    margin: 0 auto;
+    left: 320px;
+    right: 0;
+}
+
+.liked-song {
+    position: absolute;
+    cursor: pointer;
+    top: 75%;
+    z-index: 11;
+
+    /* Centered */
+    margin: 0 auto;
+    left: 320px;
+    right: 0;
+    transition: ease-in;
+}
+
+.pause-button {
+    position: absolute;
+
+    top: 85%;
+    /* Centered */
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.play-button {
+    position: absolute;
+
+    top: 75%;
+    /* Centered */
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+}
+
+.chevron-button {
+    position: absolute;
+
+    top: 10%;
+    /* Centered */
+    margin: 0 auto;
+    left: 0;
+    right: 300px;
+}
+
+.more-button {
+    position: absolute;
+
+    top: 10.6%;
+    /* Centered */
+    margin: 0 auto;
+    left: 300px;
+    right: 0px;
+}
+
+.thumbs-down {
+    position: absolute;
+    display: none;
+
+    top: 85%;
+    /* Centered */
+    margin: 0 auto;
+    left: 0px;
+    right: 250px;
+}
+
+.thumbs-up {
+    position: absolute;    
+    display: none;
+
+
+    top: 85%;
+    /* Centered */
+    margin: 0 auto;
+    left: 250px;
+    right: 0px;
+}
+
+.thumbs-down:hover,
+.thumbs-up:hover {
+    cursor: pointer;
+    opacity: .7;
+}
+
+h2 {
+    position: absolute;
+
+    top: 65%;
+    /* Centered */
+    margin: 0 auto;
+    left: 25px;
+    right: 0px;
+}
+
+
+.album {
+    font-size: medium;
+    position: absolute;
+    top: 11%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+}
+
+.song {
+    /* border: solid; */
+    position: absolute;
+    top: 75%;
+    margin: 0 auto;
+    left: 20px; /* Fixed left offset */
+    right: 20px; /* Added right offset */
+    max-width: calc(350px); /* Max width based on available space */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Show ellipsis for overflow */
+}
+
+.artist {
+    position: absolute;
+    top: 78%;
+    margin: 0 auto;
+    left: 20px; /* Fixed left offset */
+    right: 20px; /* Added right offset */
+    max-width: calc(350px); /* Max width based on available space */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Show ellipsis for overflow */
+}
+
+/* New Recommendation */
+.oval-container {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* Set the width of the oval */
+  }
+  
+.oval {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0%); /* Centers the text vertically and horizontally */
+    width: 110%;
+    height: 50px; /* Set the height of the oval */
+    background-color: #0c0c0c2f; /* Background color of the oval */
+    border-bottom-left-radius: 50% 100%; /* Makes the rounded side on the bottom */
+    border-bottom-right-radius: 50% 100%; /* Makes the rounded side on the bottom */
+    overflow: hidden; /* Hide overflowing content */
+}
+  
+.oval p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the text vertically and horizontally */
+    color: white; /* Text color */
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: bold; /* Adjust font weight as needed */
+}
+
+.oval p:hover{
+    cursor: pointer;
+    opacity: .8;
+}
+  
+

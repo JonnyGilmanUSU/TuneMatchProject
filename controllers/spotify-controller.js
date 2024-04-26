@@ -88,8 +88,8 @@ exports.getSpotifyCallback = async (req, res) => {
         // Redirect to front end after authentication is done
         // Should be front end url with / at the end
         
-        res.redirect('http://localhost:3001/');
-        // res.redirect(process.env.FRONTEND_URL);
+        // res.redirect('http://localhost:3001/');
+        res.redirect(process.env.FRONTEND_URL);
 
 
         // Schedule token refresh

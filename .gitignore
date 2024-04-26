@@ -137,3 +137,5 @@ client/package-lock.json
 # build
 client/build/
 README.md
+
+.DS_Store

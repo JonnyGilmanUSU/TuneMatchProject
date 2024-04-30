@@ -1,5 +1,6 @@
 const spotifyApi = require('../util/spotifyApi');
 const User = require('../models/userModel');
+const SpotifyWebApi = require('spotify-web-api-node');
 
 function truncateString(str) {
     if (str.length > 17) {
@@ -11,14 +12,13 @@ function truncateString(str) {
 
 
 exports.postSearchValue = async (req, res, next) => {
+    if (!req.session.accessToken) {
+        return res.status(401).send('Authentication required. Please log in.');
+    }
+
+    const spotifyApi = new SpotifyWebApi();
+    spotifyApi.setAccessToken(req.session.accessToken);
     try {
-        const spotifyUserId = req.session.spotifyUserId;
-        const user = await User.findOne({ spotifyUserId });
-
-        // Retreive access token from session
-        const accessToken = user.accessToken;
-        spotifyApi.setAccessToken(accessToken);
-
         const { searchValue } = req.body;
         console.log("Search Value: ", searchValue)
 
@@ -61,22 +61,37 @@ exports.postSearchValue = async (req, res, next) => {
         res.send({ trackData, recData });
 
     } catch(err) {
-        console.timeLog(err)
+        console.log(err)
+        if(err.statusCode === 401) {
+            // Assume token expired, refresh it
+            try {
+                const data = await spotifyApi.refreshAccessToken();
+                req.session.accessToken = data.body['access_token'];
+                spotifyApi.setAccessToken(req.session.accessToken);
+
+                // Retry the request by calling this function recursively
+                return exports.postSearchValue(req, res, next);
+            } catch (refreshError) {
+                console.error('Error refreshing Tokens:', refreshError);
+                return res.status(401).send('Session expired. Please log in again.');
+            }
+        }
+        return res.status(500).send('An error occurred while processing your request.');
     }
-}
+};
 
 exports.postSearchSuggestions = async (req, res, next) => {
-    const spotifyUserId = req.session.spotifyUserId;
-    const user = await User.findOne({ spotifyUserId });
-    // Retreive access token from session
-    const accessToken = user.accessToken;
-    console.log("ACcess token in post search suggestions:   ", accessToken)
-    spotifyApi.setAccessToken(accessToken);
+    if (!req.session.accessToken) {
+        return res.status(401).send('Authentication required. Please log in.');
+    }
+
+    const spotifyApi = new SpotifyWebApi();
+    spotifyApi.setAccessToken(req.session.accessToken);
 
     // Retreive search term from front end
     const { searchTerm } = req.body;    
-
     console.log("Backend Search Value:  ", searchTerm);
+
     try {
         const suggestionResponse = await spotifyApi.searchTracks(searchTerm, { limit: 4 });
         const suggestions = suggestionResponse.body.tracks.items.map(track => ({
@@ -89,18 +104,39 @@ exports.postSearchSuggestions = async (req, res, next) => {
         
         res.json({ suggestions })
     } catch (error) {
-        console.log("Error fetching search suggestions: ", error);
+        console.error("Error fetching search suggestions: ", error);
+        if (error.statusCode === 401) {
+            // Token might have expired, try to refresh it
+            try {
+                const data = await spotifyApi.refreshAccessToken();
+                req.session.accessToken = data.body['access_token'];
+                spotifyApi.setAccessToken(req.session.accessToken);
+
+                // Retry the request by calling this function recursively
+                return exports.postSearchSuggestions(req, res, next);
+            } catch (refreshError) {
+                console.error('Error refreshing Tokens:', refreshError);
+                return res.status(401).send('Session expired. Please log in again.');
+            }
+        }
         res.status(500).send({ error: "Failed to fetch search suggestions" });
     }
 }
 
 exports.playSong = async (req, res, next) => {
+    if (!req.session.accessToken) {
+        return res.status(401).send('Authentication required. Please log in.');
+    }
+
+    const spotifyApi = new SpotifyWebApi();
+    spotifyApi.setAccessToken(req.session.accessToken);
+
     try {
         const spotifyUserId = req.session.spotifyUserId;
         const user = await User.findOne({ spotifyUserId });
 
         // Retreive access token from session
-        const accessToken = user.accessToken;
+        const accessToken = req.session.accessToken;
         spotifyApi.setAccessToken(accessToken);
 
         const { trackUri } = req.body;
@@ -135,7 +171,7 @@ exports.likeSong = async (req, res, next) => {
         const spotifyUserId = req.session.spotifyUserId;
         const user = await User.findOne({ spotifyUserId });
         // Retreive access token from session
-        const accessToken = user.accessToken;
+        const accessToken = req.session.accessToken;
         spotifyApi.setAccessToken(accessToken);
 
         const { trackId } = req.body;

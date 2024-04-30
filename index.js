@@ -25,11 +25,11 @@ const store = new MongoDBStore({
 
 
 // -----------------------------------------** DEPLOYMENT MODE **-------------------------------------
-const port = process.env.PORT || 3001;
+// const port = process.env.PORT || 3001;
 // -----------------------------------------** DEPLOYMENT MODE **-------------------------------------
 
 // Dev Mode
-// const port = 3001;
+const port = 3001;
 
 
 // Initialize App

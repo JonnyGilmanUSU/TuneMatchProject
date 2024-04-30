@@ -39,8 +39,8 @@ function MusicPlayer () {
     // PLAY SONG REQUEST
     const playSong = async (trackUri) => {
       try {
-        // const response = await axios.post('https://tunematchproject.onrender.com/play', { trackUri });
-        const response = await axios.post('/play', { trackUri });
+        const response = await axios.post('https://tunematchproject.onrender.com/play', { trackUri });
+        // const response = await axios.post('/play', { trackUri });
         console.log("Playback Started", response.data)
       } catch (error) {
         console.log("Error playing Song:  ", error)
@@ -52,8 +52,8 @@ function MusicPlayer () {
       setIsLiked(!isLiked);
       console.log("LIKE CLICKED")
       try {
-        // const response = await axios.post('https://tunematchproject.onrender.com/postSearchValue', { trackId });
-        const response = await axios.post('/likeSong', { trackId });
+        const response = await axios.post('https://tunematchproject.onrender.com/postSearchValue', { trackId });
+        // const response = await axios.post('/likeSong', { trackId });
         console.log("Liked Song")
       } catch (error) {
         console.error('Error liking the song:', error);

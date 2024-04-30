@@ -37,8 +37,8 @@ const Home = () => {
 
     const checkAuthentication = async () => {
         try {
-            // const response = await axios.get('https://tunematchproject.onrender.com/spotify/check-auth');
-            const response = await axios.get('/spotify/check-auth');
+            const response = await axios.get('https://tunematchproject.onrender.com/spotify/check-auth');
+            // const response = await axios.get('/spotify/check-auth');
 
             if (response.data.authenticated) {
                 setGetstarted(false); // If authenticated, hide the "Get Started" button
@@ -54,8 +54,8 @@ const Home = () => {
 
         if (searchTerm.length > 1) {
 
-            // const response = axios.post('https://tunematchproject.onrender.com/searchSuggestions', { searchTerm })
-            axios.post('/searchSuggestions', { searchTerm })
+            const response = axios.post('https://tunematchproject.onrender.com/searchSuggestions', { searchTerm })
+            // axios.post('/searchSuggestions', { searchTerm })
             .then(response => {
                 setSuggestions(response.data.suggestions);
                 // console.log('searchTerm', response.data.suggestions)
@@ -72,8 +72,8 @@ const Home = () => {
     const searchHandler = async () => {
         setIsLoading(true);
         try {
-            // const response = await axios.post('https://tunematchproject.onrender.com/postSearchValue', { searchValue })
-            const response = await axios.post('/postSearchValue', { searchValue });
+            const response = await axios.post('https://tunematchproject.onrender.com/postSearchValue', { searchValue })
+            // const response = await axios.post('/postSearchValue', { searchValue });
             // Update Track and Rec Data in Context
             updateTrackData(response.data.trackData);
             updateRecData(response.data.recData)
@@ -88,8 +88,8 @@ const Home = () => {
 
     const getStartedHandler = async () => {
         try{
-            // const loginResponse = await axios.get('https://tunematchproject.onrender.com/spotify/login');
-            const loginResponse = await axios.get('/spotify/login');
+            const loginResponse = await axios.get('https://tunematchproject.onrender.com/spotify/login');
+            // const loginResponse = await axios.get('/spotify/login');
             console.log("Response from login:", loginResponse.data);  // Log to check what you receive
 
 

@@ -47,8 +47,8 @@ exports.getSpotifyCallback = async (req, res) => {
             console.log(`The access token is ${accessToken}`);
             console.log(`The refresh token is ${refreshToken}`);
 
-            res.redirect('http://localhost:3001/');
-            // res.redirect(process.env.FRONTEND_URL);
+            // res.redirect('http://localhost:3001/');
+            res.redirect(process.env.FRONTEND_URL);
             console.log('Get Callback Authorization Success')
 
             setInterval(async () => {

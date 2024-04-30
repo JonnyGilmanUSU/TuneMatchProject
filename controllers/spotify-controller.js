@@ -35,6 +35,7 @@ exports.getSpotifyCallback = async (req, res) => {
             const refreshToken = data.body['refresh_token'];
             const expiresIn = data.body['expires_in'];
 
+            req.session.createdAt = Date.now(); // Capture the current timestamp
             req.session.accessToken = accessToken;
             req.session.refreshToken = refreshToken;
             req.session.expiresIn = expiresIn;

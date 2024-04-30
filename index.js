@@ -20,7 +20,7 @@ const MONGODB_URI = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MON
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
-  collection: 'sessions'
+  collection: 'sessions',
 });
 
 
@@ -69,39 +69,18 @@ app.use(session({
   })
 );
 
-// Custom middleware to destroy expired sessions
 app.use((req, res, next) => {
-  // Get the current time
-  const now = Date.now();
-
-  // Get all sessions from the store
-  store.all((err, sessions) => {
+  if (req.session.expiresIn && (Date.now() > new Date(req.session.createdAt + req.session.expiresIn * 1000))) {
+    console.log('Session expired. Destroying session.');
+    req.session.destroy((err) => {
       if (err) {
-          console.error('Error fetching sessions:', err);
-          return next(err);
+        console.error('Error destroying session:', err);
       }
-
-      // Iterate through sessions
-      sessions.forEach(session => {
-          // Check if the session has expired
-          if (session.cookie.expires < now) {
-              // Destroy the expired session
-              store.destroy(session.id, err => {
-                  if (err) {
-                      console.error('Error destroying session:', err);
-                  } else {
-                      console.log('Expired session destroyed:', session.id);
-                  }
-              });
-          }
-      });
-  });
-
-  next(); // Continue to the next middleware
+    });
+  } else {
+    next();
+  }
 });
-
-
-
 
 
 

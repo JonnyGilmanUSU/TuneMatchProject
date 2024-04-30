@@ -132,12 +132,17 @@ exports.playSong = async (req, res, next) => {
     spotifyApi.setAccessToken(req.session.accessToken);
 
     try {
-        const spotifyUserId = req.session.spotifyUserId;
-        const user = await User.findOne({ spotifyUserId });
 
-        // Retreive access token from session
-        const accessToken = req.session.accessToken;
-        spotifyApi.setAccessToken(accessToken);
+        // Check if spotify user ID is already in session
+        if (!req.session.spotifyUserId) {
+            const userData = await spotifyApi.getMe();
+            req.session.spotifyUserId = userData.body.id;
+            console.log("Spotify User ID saved to session:", req.session.spotifyUserId);
+        }
+
+        const spotifyUserId = req.session.spotifyUserId;
+        console.log("Spotify User ID:", spotifyUserId);
+
 
         const { trackUri } = req.body;
       
@@ -169,7 +174,6 @@ exports.playSong = async (req, res, next) => {
 exports.likeSong = async (req, res, next) => {
     try {
         const spotifyUserId = req.session.spotifyUserId;
-        const user = await User.findOne({ spotifyUserId });
         // Retreive access token from session
         const accessToken = req.session.accessToken;
         spotifyApi.setAccessToken(accessToken);

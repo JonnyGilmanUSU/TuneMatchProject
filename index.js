@@ -70,17 +70,26 @@ app.use(session({
 );
 
 app.use((req, res, next) => {
-  if (req.session.expiresIn && (Date.now() > new Date(req.session.createdAt + req.session.expiresIn * 1000))) {
-    console.log('Session expired. Destroying session.');
-    req.session.destroy((err) => {
-      if (err) {
-        console.error('Error destroying session:', err);
-      }
-    });
-  } else {
-    next();
+  if (!req.session.createdAt) {
+    req.session.createdAt = Date.now();
   }
+  next();
 });
+
+// Timer to periodically check and destroy expired sessions
+setInterval(() => {
+  app.use((req, res, next) => {
+    if (req.session.createdAt && (Date.now() > req.session.createdAt + 1 * 60 * 1000)) {
+      console.log('Session expired. Destroying session.');
+      req.session.destroy((err) => {
+        if (err) {
+          console.error('Error destroying session:', err);
+        }
+      });
+    }
+    next();
+  });
+}, 1 * 60 * 1000); // Run every 30 minutes
 
 
 

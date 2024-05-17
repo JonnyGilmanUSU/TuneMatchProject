@@ -194,8 +194,8 @@ input:focus {
     .container {
       display: flex;
       align-items: center; /* Center vertically */
-      justify-content: center; /* Center horizontally */
       width: 100%; /* Ensure container takes full width */
+      padding: 0;
     }
     
     .home-text {
@@ -205,7 +205,7 @@ input:focus {
 
 
     .text-font {
-      font-size: 1rem;
+      font-size: 1.1rem;
       max-width: 65%;
 
     }

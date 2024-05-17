@@ -184,14 +184,25 @@ input:focus {
       background-image: url(../../assets//images/hero4downsized.png);
     }
 
-
-
-  
+    .wrapper {
+      display: flex;
+      align-items: center; /* Center vertically */
+      justify-content: center; /* Center horizontally */
+      height: 100vh; /* Full viewport height to center vertically */
+    }
+    
+    .container {
+      display: flex;
+      align-items: center; /* Center vertically */
+      justify-content: center; /* Center horizontally */
+      width: 100%; /* Ensure container takes full width */
+    }
+    
     .home-text {
       max-width: 70%;
-      margin-top: 4rem;
       text-align: left;
     }
+
 
     .text-font {
       font-size: 1rem;
